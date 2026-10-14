@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "airbnb": {
+      "command": "sh",
+      "args": [
+        "-c",
+        "[ -f dist/index.js ] || { npm ci && npm run build; } >&2; exec node dist/index.js"
+      ]
+    }
+  }
+}
