@@ -5,7 +5,10 @@
       "args": [
         "-c",
         "[ -f dist/index.js ] || { npm ci && npm run build; } >&2; exec node dist/index.js"
-      ]
+      ],
+      "env": {
+        "NODE_USE_ENV_PROXY": "1"
+      }
     }
   }
 }
