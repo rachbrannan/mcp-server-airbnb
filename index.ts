@@ -349,7 +349,8 @@ function isPathAllowed(path: string): boolean {
 
   try {
     const robots = robotsParser(`${BASE_URL}/robots.txt`, robotsTxtContent);
-    const allowed = robots.isAllowed(path, USER_AGENT);
+    // robots-parser needs an absolute URL; a bare path yields undefined (treated as disallowed)
+    const allowed = robots.isAllowed(new URL(path, BASE_URL).toString(), USER_AGENT) ?? true;
     
     if (!allowed) {
       log('warn', 'Path disallowed by robots.txt', { path, userAgent: USER_AGENT });
